@@ -6,7 +6,7 @@ const client = tmi.Client({
     options: { debug: true, messagesLogLevel: "info" },
     connection:{
         reconnect: true,
-        secure: true
+        secure: true,
     },
     identity:{
         username:process.env.BOT_NAME,
@@ -14,6 +14,17 @@ const client = tmi.Client({
     },
     channels:['brunildocode']
 });
+
+
+const listaComandos = [
+    "!oiee",
+    "!live",
+    "!cara",
+    "!coroa",
+    "!social",
+    "!bet",
+    "!comandos"
+]
 
 const redesSociais = [
     "twitter.com/BBrunoBorelli - Twitter",
@@ -73,6 +84,12 @@ client.on('message',(channel,tags,message,self)=>{
     }
     if(message.toLowerCase() === '!social') {
         client.say(channel, `${redesSociaisFun(redesSociais)}`);
+    }
+    if(message.toLowerCase() === "!bet"){
+        client.say(channel,"Repositório do bot: https://github.com/BrunoBorelliPro/Bot-Twitch")
+    }
+    if(message.toLowerCase() === "!comandos"){
+        client.say(channel,"Comandos: " + listaComandos.join(", "))
     }
 })
 // client.on("join", (channel, username, self) => {
